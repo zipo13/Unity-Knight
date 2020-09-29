@@ -9,11 +9,13 @@ public class Knight : MonoBehaviour
     private float horizontalMove = 0f;
     private bool isJumping = false;
     private bool isCrouching = false;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         //characterController = GetComponent("CharacterController2D");
+        anim = GetComponent<Animator>();
 
     }
 
@@ -29,18 +31,35 @@ public class Knight : MonoBehaviour
         }
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        if (horizontalMove != 0)
+        {
+            anim.SetBool("Running", true);
+        }
+        else
+        {
+            anim.SetBool("Running", false);
+        }
+
         if (Input.GetButtonDown("Jump"))
         {
             isJumping = true;
+            anim.SetTrigger("Jump");
+        }
+
+        if (Input.GetButtonDown("Attack"))
+        {
+            anim.SetTrigger("Attack");
         }
 
         if (Input.GetButtonDown("Crouch"))
         {
             isCrouching = true;
+            anim.SetBool("Crouch", true);
         }
         else if (Input.GetButtonUp("Crouch"))
         {
             isCrouching = false;
+            anim.SetBool("Crouch", false);
         }
     }
 
