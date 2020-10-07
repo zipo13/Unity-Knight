@@ -22,14 +22,6 @@ public class Knight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("left"))
-        {
-            print("left key was pressed");
-
-            //transform.
-            //transform2 += Vector2.left * Time.deltaTime * speed;
-        }
-
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         if (horizontalMove != 0)
         {
@@ -44,11 +36,6 @@ public class Knight : MonoBehaviour
         {
             isJumping = true;
             anim.SetTrigger("Jump");
-        }
-
-        if (Input.GetButtonDown("Attack"))
-        {
-            anim.SetTrigger("Attack");
         }
 
         if (Input.GetButtonDown("Crouch"))
